@@ -1,0 +1,147 @@
+Azira update V.1  
+Date : 9th April 2020
+(This Updates for only Previoues Customers new Customers not required to update.)
+
+1) Updated leftmenu overlay style
+2) Updated custom js
+3) Updated Setting , Project dropdowns added anchor link for dropdown-items
+4) Added anchor tag for mark-all-read badge for meassage and notification dropdown
+
+///////////////////////////////////////////////////////
+########## 1) Updated leftmenu overlay style ##########
+///////////////////////////////////////////////////////
+
+Step1 : open "sidemenu.js" file  root-path ----->  (assets\plugins\side-menu\sidemenu.js)
+
+Goto  // Toggle Sidebar and delete previous js and updated below mentioned js
+
+DELETE  : delete below js at line number 12
+
+$(window).on('load resize',function(){
+   if($(window).width() < 739){
+	$('.side-menu').hover(function(event) {
+	   event.preventDefault();
+	   $('.app').addClass('sidenav-toggled');
+	});
+   }
+   if($(window).width() > 739.5){
+       $('.side-menu').hover(function(event) {
+          event.preventDefault();
+          $('.app').removeClass('sidenav-toggled');
+      });
+    }
+});
+
+
+
+ADD : add below js at line number 12
+
+// Toggle Sidebar
+$(".app-sidebar").hover(function() {
+	if ($('.app').hasClass('sidenav-toggled')) {
+		$('.app').addClass('sidenav-toggled1');
+	}
+}, function() {
+	if ($('.app').hasClass('sidenav-toggled')) {
+		$('.app').removeClass('sidenav-toggled1');
+	}
+});
+
+
+
+Step:2  Replace Previous "sidemenu.css" with updated "sidemenu.css" -- root-path (assets\sidemenu.css)
+	Replace Previous "sidemenu.scss" with updated "sidemenu.css" -- root-path (assets\sidemenu.scss)
+	
+	
+Step:3  Replace Previous "style-dark.css" with updated "style-dark.css" -- root-path (assets\style-dark.css)
+	Replace Previous "style-dark.scss" with updated "style-dark.css" -- root-path (assets\style-dark.scss)
+	
+	
+///////////////////////////////////////////////////////
+########## 2) Updated custom js ##########
+///////////////////////////////////////////////////////
+
+
+Step:1  Replace Previous "custom.js" with updated "custom.js" -- root-path (assets\js\custom.js)
+	Replace Previous "custom.js" with updated "custom.js" -- root-path (assets\js\custom.js)
+	
+	
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+########## 3) Updated Setting , Project dropdowns added anchor link for dropdown-items ##########
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Step 1 : Added anchor links for "project" and "setting" dropdown menus which is located at right top of header
+
+
+##### setting-dropdown ######
+
+For Setting-dropdown for every "dropdown-item" added anchor tag 
+
+Open all html files Leftmenu and horizontalmenu (light & dark) versions and delete previous and replace updated one
+
+
+PREVIOUS:
+
+<div class="setting-menu ">
+   <div class="dropdown-item"><i class="mdi mdi-account-outline tx-16 mr-2 mt-1"></i>Profile</div>
+   <div class="dropdown-item"><i class="mdi mdi-account-box-outline tx-16 mr-2"></i>Contacts</div>
+   <div class="dropdown-item"><i class="mdi mdi-account-location tx-16 mr-2"></i>Accounts</div>
+   <div class="dropdown-divider"></div>
+   <div class="dropdown-item"><i class="typcn typcn-briefcase tx-16 mr-2"></i>About us</div>
+   <div class="dropdown-item"><i class="mdi mdi-application tx-16 mr-2"></i>Getting start</div>
+</div>
+
+UPDATED:
+
+<div class="setting-menu ">
+   <a class="dropdown-item" href="#"><i class="mdi mdi-account-outline tx-16 mr-2 mt-1"></i>Profile</a>
+   <a class="dropdown-item" href="#"><i class="mdi mdi-account-box-outline tx-16 mr-2"></i>Contacts</a>
+   <a class="dropdown-item" href="#"><i class="mdi mdi-account-location tx-16 mr-2"></i>Accounts</a>
+   <div class="dropdown-divider"></div>
+   <a class="dropdown-item" href="#"><i class="typcn typcn-briefcase tx-16 mr-2"></i>About us</a>
+   <a class="dropdown-item" href="#"><i class="mdi mdi-application tx-16 mr-2"></i>Getting start</a>
+</div>
+
+
+##### project-dropdown ######
+
+For project-dropdown for every "dropdown-item" added anchor tag 
+
+Open all html files Leftmenu and horizontalmenu (light & dark) versions and delete previous and replace updated one
+
+PREVIOUS:
+
+<div class="dropdown-item  mt-2"><i class="dropdown-icon"></i>Mobile Application</div>
+<div class="dropdown-item"><i class="dropdown-icon"></i>PSD Projects</div>
+<div class="dropdown-item"><i class="dropdown-icon"></i>PHP Project</div>
+<div class="dropdown-divider"></div>
+<div class="dropdown-item"><i class="dropdown-icon"></i>Wordpress Projects</div>
+<div class="dropdown-item mb-2"><i class="dropdown-icon "></i>HTML &amp; CSS3 Projects</div>
+
+
+UPDATED:
+
+<a class="dropdown-item  mt-2" href="#"><i class="dropdown-icon"></i>Mobile Application</a>
+<a class="dropdown-item" href="#"><i class="dropdown-icon"></i>PSD Projects</a>
+<a class="dropdown-item" href="#"><i class="dropdown-icon"></i>PHP Project</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#"><i class="dropdown-icon"></i>Wordpress Projects</a>
+<a class="dropdown-item mb-2" href="#"><i class="dropdown-icon "></i>HTML &amp; CSS3 Projects</a>
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+########## 4) Added anchor tag for mark-all-read badge for meassage and notification dropdown ##########
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+Added anchor tag for "mark-all-read" badge for meassage and notification dropdown
+
+
+PREVIOUS:
+
+<div class="badge badge-pill badge-warning float-right">Mark All Read</div>
+
+UPDATED:
+
+<a class="badge badge-pill badge-warning float-right" href="#">Mark All Read</a>

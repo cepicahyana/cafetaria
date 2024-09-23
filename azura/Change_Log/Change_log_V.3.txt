@@ -1,0 +1,1413 @@
+Version: update V.3  (20-4-2020)
+
+
+1) Added tabs page in(horizontal,horizontal-dark,horizontal-dark-rtl,horizontal-rtl,leftmenu,leftmenu-dark,leftmenu-dark-rtl,leftmenu-rtl)
+2) background.html images "TRANSPARENT WHITE SET", "TRANSPARENT BLACK SET"image overlapping issue is fixed
+3) update horizontalmenu to avoid scrolling page responsive scrolling issue is fixed
+4) index page PROJECTS WORKLOAD is updated and index.js is updated
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+######  1) Added tabs page in(horizontal,horizontal-dark,horizontal-dark-rtl,horizontal-rtl,leftmenu,leftmenu-dark,leftmenu-dark-rtl,leftmenu-rtl) ###### 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+STEP1) add tabs.html file in all above mentioned folder in both(LTR&RTL)
+
+
+STEP2) LTR   --  add "_tabs.scss" file in scss bootstrap folder    ----->   rootpath---> (assets/scss/bootstrap/_tabs.scss)
+       RTL   --  add "_tabs.scss" file in scss bootstrap folder    ----->   rootpath---> (assets/scss-rtl/bootstrap/_tabs.scss)
+
+
+STEP3) LTR   -- add tabs.js file in js folder    ----->  rootpath---> (assets/js/tabs.js)
+
+
+STEP4) add "tabs" folder in plugins folder   ----->   rootpath---> assets/plugins/tabs
+
+
+STEP5) add "tabs.html" link in all  [ leftmenu,leftmenu-dark,leftmenu-dark-rtl,leftmenu-rtl ] folders
+
+	Add this link <li><a class="slide-item" href="tabs.html">Tabs</a></li> after the "tags" as shown below in all html pages
+
+
+     <li><a class="slide-item" href="tags.html">Tags</a></li>
+ADD: <li><a class="slide-item" href="tabs.html">Tabs</a></li>
+
+
+STEP6) add "tabs.html" link in all  [ horizontal,horizontal-dark,horizontal-dark-rtl,horizontal-rtl ] folders
+
+	Add this link <li aria-haspopup="true"><a href="tabs.html" class="slide-item">Tabs</a></li> before the "Apps" as shown below in all html pages
+
+ ADD:  <li aria-haspopup="true"><a href="tabs.html" class="slide-item">Tabs</a></li>
+       <li><h3 class="fs-14 font-weight-bold mb-1 mt-2">Apps</h3></li>
+       
+
+
+STEP7) add below css in style.css   -----> root-path(assets/css/style.css)
+
+/* ######### Tabs #########*/
+
+.tabs-style-1 .main-nav-line .nav-link {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+}
+.tabs-style-1 .main-nav-line .nav-link.active::before {
+	bottom: 0;
+	background: #5965f9;
+}
+.tabs-style-2 .main-nav-line .nav-link {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+	margin: 0 5px 0px 0;
+}
+.tabs-style-2 .main-nav-line .nav-link.active {
+	background: #5965f9;
+	color: #fff;
+}
+.tabs-style-2 .main-nav-line .nav-link.active::before {
+	display: none;
+}
+.tabs-style-3 {
+	padding: 20px;
+	border: 1px solid #e3e3e3;
+}
+.tabs-style-3 .nav.panel-tabs li a {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+	border-radius: 20px;
+	margin: 0 5px 5px 0;
+	text-align: center;
+	display: block;
+	color: #14112d;
+}
+.tabs-style-3 .tabs-menu-body {
+	margin-top: 20px;
+}
+.tabs-style-3 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+.tabs-style-4 .nav.panel-tabs li {
+	display: block;
+	width: 100%;
+}
+.tabs-style-4 .tabs-menu-body {
+	padding: 20px;
+	border: 1px solid #e3e3e3;
+}
+.tabs-style-4 .nav.panel-tabs li a {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+	border-radius: 0px;
+	margin: 0 0 5px 0;
+	text-align: center;
+	display: block;
+	color: #14112d;
+	width: 100%;
+}
+.tabs-style-4 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+@media (min-width: 768px) {
+	.tabs-style-4 .tab-menu-heading {
+		width: 200px;
+	}
+}
+.panel-primary.tabs-style-1 .main-nav-line .nav-link.active::before {
+	top: auto;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	width: auto;
+}
+.tab_wrapper {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+}
+.tab_wrapper.right_side>ul {
+	width: 25%;
+	float: right;
+	padding-left: 0;
+	border-bottom: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side>ul li {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 18px;
+	border-width: 1px;
+	border-right: 0;
+	border-left: 0;
+	text-align: right;
+	list-style-type: none;
+}
+.tab_wrapper.right_side>ul li:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	width: 5px;
+	height: 100%;
+	content: "";
+}
+.tab_wrapper.right_side>ul li.active:before {
+	left: -2px;
+	right: inherit;
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 2px;
+	height: 100%;
+	background: #fff;
+}
+.tab_wrapper.right_side .content_wrapper {
+	width: 75%;
+	float: left;
+	border: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side .controller {
+	top: -50px;
+}
+.tab_wrapper>ul li.active {
+	border-color: #5965f9;
+	background: #5965f9;
+	color: #fff;
+}
+.tab_wrapper * {
+	box-sizing: border-box;
+}
+.tab_wrapper>ul {
+	clear: both;
+	display: inline-block;
+	width: 100%;
+	border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+	margin-bottom: 0;
+}
+.tab_wrapper>ul li {
+	float: left;
+	cursor: pointer;
+	font-weight: 500;
+	padding: 8px 18px;
+	text-transform: uppercase;
+	border: 1px solid #f0f2f7;
+	font-size: 1.05em;
+	border-bottom: 0;
+	position: relative;
+	border-top: 3px solid #f0f2f7;
+	margin: 0 5px 0 0;
+}
+.tab_wrapper>ul li.active:after {
+	content: "";
+	position: absolute;
+	bottom: -1px;
+	height: 1px;
+	left: 0;
+	background: #fff;
+	width: 100%;
+}
+.tab_wrapper .controller {
+	display: block;
+	overflow: hidden;
+	clear: both;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.tab_wrapper .controller span {
+	padding: 8px 22px;
+	text-transform: uppercase;
+	display: inline-block;
+}
+.tab_wrapper .controller span.next {
+	float: right;
+	margin-left: 10px;
+}
+.tab_wrapper .content_wrapper {
+	float: left;
+	width: 100%;
+	border: 1px solid rgba(0, 40, 100, 0.12);
+	border-top: 0;
+	box-sizing: border-box;
+}
+.tab_wrapper .content_wrapper .tab_content {
+	display: none;
+	padding: 15px 20px;
+}
+.tab_wrapper .content_wrapper .tab_content.active {
+	/* display: block; */
+}
+.tab_wrapper .content_wrapper .tab_content .error {
+	color: red;
+}
+.tab_wrapper .content_wrapper .accordian_header {
+	display: none;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-top: 1px solid #f0f2f7;
+	border-bottom: 1px solid #fff;
+	position: relative;
+	cursor: pointer;
+}
+.tab_wrapper .content_wrapper .accordian_header.active {
+	border: 1px solid #f0f2f7;
+}
+.tab_wrapper .content_wrapper .accordian_header.active:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: "";
+	width: 5px;
+	height: 100%;
+}
+.tab_wrapper .content_wrapper .accordian_header .arrow {
+	float: right;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	position: relative;
+	border-radius: 2px;
+	transform: rotate(-135deg);
+	background: #fff;
+	border-top: 3px solid #cdd2e0;
+	border-left: 3px solid #cdd2e0;
+}
+.tab_wrapper .content_wrapper .accordian_header.active .arrow {
+	transform: rotate(45deg);
+	margin-top: 5px;
+}
+.tab_wrapper.left_side>ul {
+	width: 25%;
+	float: left;
+	padding-left: 0;
+	border-bottom: 1px solid #f0f2f7;
+}
+.tab_wrapper.left_side>ul li {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 18px;
+	border-width: 1px;
+	border-right: 0;
+	border-left: 0;
+	list-style-type: none;
+}
+.tab_wrapper.left_side>ul li:after {
+	left: 0;
+	top: 0;
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background: #f0f2f7;
+}
+.tab_wrapper.left_side>ul li.active {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.left_side>ul li.active:after {
+	left: 0;
+	top: 0;
+	width: 5px;
+	height: 100%;
+}
+.tab_wrapper.left_side>ul li.active:before {
+	right: -1px;
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 2px;
+	height: 100%;
+	background: #fff;
+}
+.tab_wrapper.left_side .content_wrapper {
+	width: 75%;
+	border: 1px solid #f0f2f7;
+	float: left;
+}
+.tab_wrapper.left_side .controller {
+	top: -50px;
+}
+.tab_wrapper.right_side>ul {
+	width: 25%;
+	float: right;
+	border-bottom: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side>ul li {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 18px;
+	border-width: 1px;
+	border-right: 0;
+	border-left: 0;
+	text-align: right;
+}
+.tab_wrapper.right_side>ul li:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	width: 5px;
+	height: 100%;
+	content: "";
+}
+.tab_wrapper.right_side>ul li.active:before {
+	left: -2px;
+	right: inherit;
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 2px;
+	height: 100%;
+	background: #fff;
+}
+.tab_wrapper.right_side .content_wrapper {
+	width: 75%;
+	float: left;
+	border: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side .controller {
+	top: -50px;
+}
+.tab_wrapper.accordion .content_wrapper {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.accordion .content_wrapper .accordian_header {
+	display: block;
+}
+.tab_wrapper.accordion>ul {
+	display: none;
+}
+.tab_wrapper .active_tab {
+	display: none;
+	position: relative;
+	background: #000000;
+	padding: 12px;
+	text-align: center;
+	padding-right: 50px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 30px;
+}
+.tab_wrapper .active_tab .arrow {
+	width: 30px;
+	height: 30px;
+	overflow: hidden;
+	line-height: 30px;
+	text-align: center;
+	background: #fff;
+	position: absolute;
+	right: 6px;
+	border-radius: 50%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.tab_wrapper .active_tab .arrow:after {
+	content: "";
+	width: 10px;
+	display: inline-block;
+	height: 10px;
+	border-right: 3px solid #000;
+	border-bottom: 3px solid #000;
+	transform: rotate(45deg);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -6px;
+	margin-top: -8px;
+}
+.tab_wrapper .active_tab .text {
+	text-indent: 39px;
+	display: block;
+}
+@media only screen and (max-width: 768px) {
+	.tab_wrapper>ul {
+		display: none;
+	}
+	.tab_wrapper .content_wrapper {
+		border: 0;
+	}
+	.tab_wrapper .content_wrapper .accordian_header {
+		display: block;
+	}
+	.tab_wrapper.left_side .content_wrapper, .tab_wrapper.right_side .content_wrapper {
+		width: 100%;
+		border-top: 0;
+	}
+	.tab_wrapper .controller {
+		display: none;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list {
+		border: 0;
+		box-shadow: 0 0 8px #f0f2f7;
+		position: absolute;
+		z-index: 3;
+		background: #fff;
+		border-radius: 5px;
+		margin-top: 15px;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list:before {
+		content: "";
+		position: absolute;
+		top: -6px;
+		left: 50%;
+		width: 14px;
+		height: 14px;
+		background: #fff;
+		transform: rotate(45deg);
+		box-shadow: -3px -4px 5px #efefef;
+		margin-left: -7px;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list li {
+		border: 0;
+		border-bottom: 1px solid #f0f2f7;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list li.active:after {
+		display: none;
+	}
+	.tab_wrapper.show-as-dropdown .active_tab {
+		display: block;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list, .tab_wrapper.show-as-dropdown>.content_wrapper>.accordian_header {
+		display: none;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list li {
+		display: block;
+		float: none;
+		width: 100%;
+	}
+}
+@media only screen and (min-width: 769px) {
+	.tab_wrapper.show-as-dropdown>.tab_list {
+		display: block !important;
+		overflow: hidden;
+	}
+}
+.dark-theme .tabs-style-2 .main-nav-line .nav-link {
+	background: #30385f;
+}
+.dark-theme .tabs-style-2 .main-nav-line .nav-link.active {
+	background: #5965f9 !important;
+	color: #fff;
+}
+.dark-theme .tabs-style-1 .main-nav-line .nav-link {
+	background: #191f3a;
+}
+.dark-theme .tabs-style-3 {
+	border: 1px solid rgba(227, 227, 227, 0.1);
+}
+.dark-theme .tabs-style-3 .nav.panel-tabs li a {
+	background: rgba(239, 239, 245, 0.3);
+	color: #fff;
+}
+.dark-theme .tabs-style-4 .tabs-menu-body {
+	border: 1px solid rgba(227, 227, 227, 0.15);
+}
+.dark-theme .tabs-style-3 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+.dark-theme .tabs-style-4 .nav.panel-tabs li a {
+	background: rgba(239, 239, 245, 0.2);
+	color: #fff;
+}
+.dark-theme .tabs-style-4 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+.dark-theme .tab_wrapper.right_side .content_wrapper, .dark-theme .tab_wrapper.left_side .content_wrapper, .dark-theme .tab_wrapper>ul li {
+	border: 1px solid rgba(240, 242, 247, 0.12);
+}
+.dark-theme .tab_wrapper.right_side>ul li.active:before, .dark-theme .tab_wrapper.left_side>ul li.active:before, .dark-theme .tab_wrapper.right_side>ul li:after, .dark-theme .tab_wrapper.left_side>ul li:after {
+	background: #5965f9;
+}
+.dark-theme .tab_wrapper.right_side>ul li.active, .dark-theme .tab_wrapper.left_side>ul li.active {
+	border-color: rgba(240, 242, 247, 0.1);
+}
+.dark-theme .tab_wrapper.right_side>ul, .dark-theme .tab_wrapper.left_side>ul {
+	border-bottom: 1px solid rgba(240, 242, 247, 0.1);
+}
+.tab_wrapper .content_wrapper .accordian_header.active {
+	color: #5965f9;
+}
+.tab_wrapper .content_wrapper .accordian_header.active:after {
+	background: #5965f9;
+}
+.tab_wrapper .content_wrapper .accordian_header.active .arrow {
+	transform: rotate(45deg);
+	margin-top: 5px;
+}
+.dark-theme .tab_wrapper .content_wrapper .accordian_header.active {
+	border: 1px solid rgba(240, 242, 247, 0.1);
+}
+.dark-theme .tab_wrapper .content_wrapper .accordian_header {
+	border-top: 1px solid rgba(240, 242, 247, 0.1);
+	border-bottom: 1px solid rgba(240, 242, 247, 0.1);
+}
+.dark-theme .tab_wrapper .content_wrapper .accordian_header .arrow {
+	background: transparent;
+	border-top: 3px solid rgba(240, 242, 247, 0.4);
+	border-left: 3px solid rgba(240, 242, 247, 0.4);
+}
+/* ######### Tabs #########*/
+
+
+
+STEP8) add below css in style.css   -----> root-path(assets/rtl-css/style.css)
+
+/* ######### Tabs #########*/
+
+.tabs-style-1 .main-nav-line .nav-link {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+}
+.tabs-style-1 .main-nav-line .nav-link.active::before {
+	bottom: 0;
+	background: #5965f9;
+}
+.tabs-style-2 .main-nav-line .nav-link {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+	margin: 0 5px 0px 0;
+}
+.tabs-style-2 .main-nav-line .nav-link.active {
+	background: #5965f9;
+	color: #fff;
+}
+.tabs-style-2 .main-nav-line .nav-link.active::before {
+	display: none;
+}
+.tabs-style-3 {
+	padding: 20px;
+	border: 1px solid #e3e3e3;
+}
+.tabs-style-3 .nav.panel-tabs li a {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+	border-radius: 20px;
+	margin: 0 5px 5px 0;
+	text-align: center;
+	display: block;
+	color: #14112d;
+}
+.tabs-style-3 .tabs-menu-body {
+	margin-top: 20px;
+}
+.tabs-style-3 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+.tabs-style-4 .nav.panel-tabs li {
+	display: block;
+	width: 100%;
+}
+.tabs-style-4 .tabs-menu-body {
+	padding: 20px;
+	border: 1px solid #e3e3e3;
+}
+.tabs-style-4 .nav.panel-tabs li a {
+	padding: 10px 18px 10px 18px;
+	background: #efeff5;
+	border-radius: 0px;
+	margin: 0 0 5px 0;
+	text-align: center;
+	display: block;
+	color: #14112d;
+	width: 100%;
+}
+.tabs-style-4 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+@media (min-width: 768px) {
+	.tabs-style-4 .tab-menu-heading {
+		width: 200px;
+	}
+}
+.panel-primary.tabs-style-1 .main-nav-line .nav-link.active::before {
+	top: auto;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	width: auto;
+}
+.tab_wrapper {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+}
+.tab_wrapper.right_side>ul {
+	width: 25%;
+	float: right;
+	padding-left: 0;
+	padding-right: 0;
+	border-bottom: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side>ul li {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 18px;
+	border-width: 1px;
+	border-right: 0;
+	border-left: 0;
+	text-align: right;
+	list-style-type: none;
+}
+.tab_wrapper.right_side>ul li:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	width: 5px;
+	height: 100%;
+	content: "";
+}
+.tab_wrapper.right_side>ul li.active:before {
+	left: -2px;
+	right: inherit;
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 2px;
+	height: 100%;
+	background: #fff;
+}
+.tab_wrapper.right_side .content_wrapper {
+	width: 75%;
+	float: left;
+	border: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side .controller {
+	top: -50px;
+}
+.tab_wrapper>ul li.active {
+	border-color: #5965f9;
+	background: #5965f9;
+	color: #fff;
+}
+.tab_wrapper * {
+	box-sizing: border-box;
+}
+.tab_wrapper>ul {
+	clear: both;
+	display: inline-block;
+	width: 100%;
+	border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+	margin-bottom: 0;
+}
+.tab_wrapper>ul li {
+	float: left;
+	cursor: pointer;
+	font-weight: 500;
+	padding: 8px 18px;
+	text-transform: uppercase;
+	border: 1px solid #f0f2f7;
+	font-size: 1.05em;
+	border-bottom: 0;
+	position: relative;
+	border-top: 3px solid #f0f2f7;
+	margin: 0 5px 0 0;
+}
+.tab_wrapper>ul li.active:after {
+	content: "";
+	position: absolute;
+	bottom: -1px;
+	height: 1px;
+	left: 0;
+	background: #fff;
+	width: 100%;
+}
+.tab_wrapper .controller {
+	display: block;
+	overflow: hidden;
+	clear: both;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.tab_wrapper .controller span {
+	padding: 8px 22px;
+	text-transform: uppercase;
+	display: inline-block;
+}
+.tab_wrapper .controller span.next {
+	float: right;
+	margin-left: 10px;
+}
+.tab_wrapper .content_wrapper {
+	float: left;
+	width: 100%;
+	border: 1px solid rgba(0, 40, 100, 0.12);
+	border-top: 0;
+	box-sizing: border-box;
+}
+.tab_wrapper .content_wrapper .tab_content {
+	display: none;
+	padding: 15px 20px;
+}
+.tab_wrapper .content_wrapper .tab_content.active {
+	/* display: block; */
+}
+.tab_wrapper .content_wrapper .tab_content .error {
+	color: red;
+}
+.tab_wrapper .content_wrapper .accordian_header {
+	display: none;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-top: 1px solid #f0f2f7;
+	border-bottom: 1px solid #fff;
+	position: relative;
+	cursor: pointer;
+}
+.tab_wrapper .content_wrapper .accordian_header.active {
+	border: 1px solid #f0f2f7;
+}
+.tab_wrapper .content_wrapper .accordian_header.active:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	content: "";
+	width: 5px;
+	height: 100%;
+}
+.tab_wrapper .content_wrapper .accordian_header .arrow {
+	float: left;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	position: relative;
+	border-radius: 2px;
+	transform: rotate(-135deg);
+	background: #fff;
+	border-top: 3px solid #cdd2e0;
+	border-left: 3px solid #cdd2e0;
+}
+.tab_wrapper .content_wrapper .accordian_header.active .arrow {
+	transform: rotate(45deg);
+	margin-top: 5px;
+}
+.tab_wrapper.left_side>ul {
+	width: 25%;
+	float: left;
+	padding-left: 0;
+	padding-right: 0;
+	border-bottom: 1px solid #f0f2f7;
+}
+.tab_wrapper.left_side>ul li {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 18px;
+	border-width: 1px;
+	border-right: 0;
+	border-left: 0;
+	list-style-type: none;
+}
+.tab_wrapper.left_side>ul li:after {
+	right: 0;
+	top: 0;
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background: #f0f2f7;
+}
+.tab_wrapper.left_side>ul li.active {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.left_side>ul li.active:after {
+	left: 0;
+	top: 0;
+	width: 5px;
+	height: 100%;
+}
+.tab_wrapper.left_side>ul li.active:before {
+	right: -1px;
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 2px;
+	height: 100%;
+	background: #fff;
+}
+.tab_wrapper.left_side .content_wrapper {
+	width: 75%;
+	border: 1px solid #f0f2f7;
+	float: left;
+}
+.tab_wrapper.left_side .controller {
+	top: -50px;
+}
+.tab_wrapper.right_side>ul {
+	width: 25%;
+	float: right;
+	border-bottom: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side>ul li {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 18px;
+	border-width: 1px;
+	border-right: 0;
+	border-left: 0;
+	text-align: right;
+}
+.tab_wrapper.right_side>ul li:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.right_side>ul li.active:after {
+	right: 0;
+	left: inherit;
+	top: 0;
+	width: 5px;
+	height: 100%;
+	content: "";
+}
+.tab_wrapper.right_side>ul li.active:before {
+	left: -2px;
+	right: inherit;
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 2px;
+	height: 100%;
+	background: #fff;
+}
+.tab_wrapper.right_side .content_wrapper {
+	width: 75%;
+	float: left;
+	border: 1px solid #f0f2f7;
+}
+.tab_wrapper.right_side .controller {
+	top: -50px;
+}
+.tab_wrapper.accordion .content_wrapper {
+	border-color: #f0f2f7;
+}
+.tab_wrapper.accordion .content_wrapper .accordian_header {
+	display: block;
+}
+.tab_wrapper.accordion>ul {
+	display: none;
+}
+.tab_wrapper .active_tab {
+	display: none;
+	position: relative;
+	background: #000000;
+	padding: 12px;
+	text-align: center;
+	padding-right: 50px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 30px;
+}
+.tab_wrapper .active_tab .arrow {
+	width: 30px;
+	height: 30px;
+	overflow: hidden;
+	line-height: 30px;
+	text-align: center;
+	background: #fff;
+	position: absolute;
+	right: 6px;
+	border-radius: 50%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.tab_wrapper .active_tab .arrow:after {
+	content: "";
+	width: 10px;
+	display: inline-block;
+	height: 10px;
+	border-right: 3px solid #000;
+	border-bottom: 3px solid #000;
+	transform: rotate(45deg);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -6px;
+	margin-top: -8px;
+}
+.tab_wrapper .active_tab .text {
+	text-indent: 39px;
+	display: block;
+}
+@media only screen and (max-width: 768px) {
+	.tab_wrapper>ul {
+		display: none;
+	}
+	.tab_wrapper .content_wrapper {
+		border: 0;
+	}
+	.tab_wrapper .content_wrapper .accordian_header {
+		display: block;
+	}
+	.tab_wrapper.left_side .content_wrapper, .tab_wrapper.right_side .content_wrapper {
+		width: 100%;
+		border-top: 0;
+	}
+	.tab_wrapper .controller {
+		display: none;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list {
+		border: 0;
+		box-shadow: 0 0 8px #f0f2f7;
+		position: absolute;
+		z-index: 3;
+		background: #fff;
+		border-radius: 5px;
+		margin-top: 15px;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list:before {
+		content: "";
+		position: absolute;
+		top: -6px;
+		left: 50%;
+		width: 14px;
+		height: 14px;
+		background: #fff;
+		transform: rotate(45deg);
+		box-shadow: -3px -4px 5px #efefef;
+		margin-left: -7px;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list li {
+		border: 0;
+		border-bottom: 1px solid #f0f2f7;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list li.active:after {
+		display: none;
+	}
+	.tab_wrapper.show-as-dropdown .active_tab {
+		display: block;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list, .tab_wrapper.show-as-dropdown>.content_wrapper>.accordian_header {
+		display: none;
+	}
+	.tab_wrapper.show-as-dropdown>.tab_list li {
+		display: block;
+		float: none;
+		width: 100%;
+	}
+}
+@media only screen and (min-width: 769px) {
+	.tab_wrapper.show-as-dropdown>.tab_list {
+		display: block !important;
+		overflow: hidden;
+	}
+}
+.dark-theme .tabs-style-2 .main-nav-line .nav-link {
+	background: #30385f;
+}
+.dark-theme .tabs-style-2 .main-nav-line .nav-link.active {
+	background: #5965f9 !important;
+	color: #fff;
+}
+.dark-theme .tabs-style-1 .main-nav-line .nav-link {
+	background: #191f3a;
+}
+.dark-theme .tabs-style-3 {
+	border: 1px solid rgba(227, 227, 227, 0.1);
+}
+.dark-theme .tabs-style-3 .nav.panel-tabs li a {
+	background: rgba(239, 239, 245, 0.3);
+	color: #fff;
+}
+.dark-theme .tabs-style-4 .tabs-menu-body {
+	border: 1px solid rgba(227, 227, 227, 0.15);
+}
+.dark-theme .tabs-style-3 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+.dark-theme .tabs-style-4 .nav.panel-tabs li a {
+	background: rgba(239, 239, 245, 0.2);
+	color: #fff;
+}
+.dark-theme .tabs-style-4 .nav.panel-tabs li a.active {
+	background: #5965f9;
+	color: #fff;
+}
+.dark-theme .tab_wrapper.right_side .content_wrapper, .dark-theme .tab_wrapper.left_side .content_wrapper, .dark-theme .tab_wrapper>ul li {
+	border: 1px solid rgba(240, 242, 247, 0.12);
+}
+.dark-theme .tab_wrapper.right_side>ul li.active:before, .dark-theme .tab_wrapper.left_side>ul li.active:before, .dark-theme .tab_wrapper.right_side>ul li:after, .dark-theme .tab_wrapper.left_side>ul li:after {
+	background: #5965f9;
+}
+.dark-theme .tab_wrapper.right_side>ul li.active, .dark-theme .tab_wrapper.left_side>ul li.active {
+	border-color: rgba(240, 242, 247, 0.1);
+}
+.dark-theme .tab_wrapper.right_side>ul, .dark-theme .tab_wrapper.left_side>ul {
+	border-bottom: 1px solid rgba(240, 242, 247, 0.1);
+}
+.tab_wrapper .content_wrapper .accordian_header.active {
+	color: #5965f9;
+}
+.tab_wrapper .content_wrapper .accordian_header.active:after {
+	background: #5965f9;
+}
+.tab_wrapper .content_wrapper .accordian_header.active .arrow {
+	transform: rotate(45deg);
+	margin-top: 5px;
+}
+.dark-theme .tab_wrapper .content_wrapper .accordian_header.active {
+	border: 1px solid rgba(240, 242, 247, 0.1);
+}
+.dark-theme .tab_wrapper .content_wrapper .accordian_header {
+	border-top: 1px solid rgba(240, 242, 247, 0.1);
+	border-bottom: 1px solid rgba(240, 242, 247, 0.1);
+}
+.dark-theme .tab_wrapper .content_wrapper .accordian_header .arrow {
+	background: transparent;
+	border-top: 3px solid rgba(240, 242, 247, 0.4);
+	border-left: 3px solid rgba(240, 242, 247, 0.4);
+}
+/* ######### Tabs #########*/
+
+
+
+STEP9 : LTR -- replace the previous "style.scss" with updated "style.scss"     rootpath---> (assets/scss/style.scss )
+	RTL -- replace the previous "style.scss" with updated "style.scss"     rootpath---> (assets/scss-rtl/style.scss )
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+2) background.html images "TRANSPARENT WHITE SET", "TRANSPARENT BLACK SET" image overlapping issue is fixed
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+In "background.html" page "TRANSPARENT WHITE SET", "TRANSPARENT BLACK SET" section images are overlapping with the tables to fix the issue please follow below steps
+
+step-1 :  open all "background.html"  pages go to  "TRANSPARENT WHITE SET", "TRANSPARENT BLACK SET" cards and remove "ht-80" beside the d-flex flex-wrap to fix image oaverlapping the issue
+
+PREVIOUS:
+
+<div class="d-flex flex-wrap ht-80">
+
+UPDATED:
+
+<div class="d-flex flex-wrap"> 
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+3) update horizontalmenu to avoid scrolling page responsive scrolling issue is fixed
+/////////////////////////////////////////////////////////////////////////////////////
+
+there is responsvie scrolling issue in leftmenu due to active class please update horizontalmenu.js file  --- rootpath --> (assets/plugins/horizontal-menu/horizontal-menu.js)
+
+Replace previous "horizontal-menu.js" with updated "horizontal-menu.js"
+
+
+############## SCSS #############
+
+open "_horizontal-menu.scss" goto line number 686 and add ".menu-open" beside the "body.active" class as shown below
+
+LTR -- rootpath(aasets/scss/layouts/_horizontal-menu.scss )
+RTL -- rootpath(aasets/scss-rtl/layouts/_horizontal-menu.scss )
+
+PREVIOUS:
+
+body.active{
+    overflow: hidden;
+}
+
+UPDATED
+
+body.active.menu-open {
+    overflow: hidden;
+}
+
+
+############## CSS #############
+
+LTR : open "style.css" goto line number 16632 and add ".menu-open" beside the "body.active" class as shown below
+
+RTL : open "style.css" goto line number 16639 and add ".menu-open" beside the "body.active" class as shown below
+
+LTR -- rootpath(aasets/css/style.css )
+RTL -- rootpath(aasets/rtl-css/style.css )
+
+PREVIOUS:
+
+body.active{
+    overflow: hidden;
+}
+
+ADD:
+
+body.active.menu-open {
+    overflow: hidden;
+}
+
+
+/////////////////////////////////////////////////////////////////////
+4) index page PROJECTS WORKLOAD is updated and index.js is updated
+/////////////////////////////////////////////////////////////////////
+
+
+############ LTR ############
+
+Step:1 Open index page go to  "PROJECTS WORKLOAD"  and update below section in 
+
+BEFORE:
+
+<div class="pt-2">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h5 class="mb-0 tx-15 d-flex"><span class="legend bg-primary-gradient brround"></span>40.32%</h6>
+	    <p class="text-muted  tx-13 mb-0">External</p>
+	</div>
+	<div class="col-sm-4 ">
+	   <span id="sparkel1">1,3,7,8,4,5,4,8,6</span>
+	</div>
+    </div>
+</div>
+
+<div class="pt-2">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-danger-gradient brround"></span>40.73%</h6>
+	    <p class="text-muted tx-13 mb-0 ">Internal</p>
+	</div>
+	<div class="col-sm-4 ">
+	   <span id="sparkel2">2,5,6,4,8,6,5,9,6</span>
+	</div>
+    </div>
+</div>
+<div class="pt-2">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	   <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-success-gradient brround"></span>50.12%</h6>
+	    <p class="text-muted tx-13 mb-0">Other</p>
+	</div>
+	<div class="col-sm-4 ">
+	   <span id="sparkel3">2,5,6,4,8,6,5,9,6</span>
+	</div>
+    </div>
+</div>
+
+
+AFTER:
+
+<div class="pt-3">
+   <div class="row ">
+	<div class="col-sm-8 ">
+		<h6 class="mb-0 tx-15 d-flex"><span class="legend bg-primary-gradient brround"></span><span class="ml-3">40.32%</span></h6>
+		<p class="text-muted  tx-13 mb-0 ml-4">External</p>
+	</div>
+	<div class="col-sm-4 ">
+		<span id="sparkel1">1,3,7,8,4,5,4,8,6</span>
+	</div>
+    </div>
+  </div>
+<div class="pt-3">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	   <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-warning-gradient brround"></span><span class="ml-3">40.73%</span></h6>
+	   <p class="text-muted tx-13 mb-0 ml-4 ">Internal</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel2">2,5,6,4,8,6,5,9,6</span>
+	</div>
+    </div>
+</div>
+<div class="pt-3">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-success-gradient brround"></span><span class="ml-3">50.12%</span></h6>
+	    <p class="text-muted tx-13 mb-0 ml-4">Other</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel3">2,5,6,4,8,6,5,9,6</span>
+	</div>
+    </div>
+</div>
+
+
+############ RTL ############
+
+Step:2 Open index page go to  "PROJECTS WORKLOAD"  and update below section in 
+
+BEFORE:
+
+<div class="pt-23">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-primary-gradient brround"></span><span class="ml-3">40.32%</span></h6>
+	    <p class="text-muted  tx-13 mb-0 ml-3">External</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel1">1,3,7,8,4,5,4,8,6</span>
+	</div>
+    </div>
+</div>
+<div class="pt-2">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-warning-gradient brround"></span><span class="ml-3">40.73%</span></h6>
+	    <p class="text-muted tx-13 mb-0 ml-3">Internal</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel2">2,5,6,4,8,6,5,9,6</span>
+	</div>
+   </div>
+</div>
+<div class="pt-2">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-success-gradient brround"></span><span class="ml-3">50.12%</span></h6>
+	    <p class="text-muted tx-13 mb-0 ml-3">Other</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel3">2,5,6,4,8,6,5,9,6</span>
+	</div>
+     </div>
+</div>
+
+AFTER:
+
+<div class="pt-3">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-primary-gradient brround"></span><span class="mr-3">40.32%</span></h6>
+	    <p class="text-muted  tx-13 mb-0 mr-4">External</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel1">1,3,7,8,4,5,4,8,6</span>
+	</div>
+    </div>
+</div>
+<div class="pt-3">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-warning-gradient brround"></span><span class="mr-3">40.73%</span></h6>
+	    <p class="text-muted tx-13 mb-0 mr-4">Internal</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel2">2,5,6,4,8,6,5,9,6</span>
+	</div>
+   </div>
+</div>
+<div class="pt-3">
+    <div class="row ">
+	<div class="col-sm-8 ">
+	    <h6 class="mb-0 tx-15 d-flex"><span class="legend bg-success-gradient brround"></span><span class="mr-3">50.12%</span></h6>
+	    <p class="text-muted tx-13 mb-0 mr-4">Other</p>
+	</div>
+	<div class="col-sm-4 ">
+	    <span id="sparkel3">2,5,6,4,8,6,5,9,6</span>
+	</div>
+     </div>
+</div>
+
+
+
+Step:3 open index.js file  -- root(assets/js/index.js) 
+
+	for this chart color nd sizes are changed so plss update it "chartDonut" 
+
+	open "index.js file" and go to line number "139-219"  copy the text between the
+	/* Chartjs (#chartDonut) */ /* Chartjs (#chartDonut) closed */ and update this line of code in your template
+	
+	
+///////////////////////////////////////	
+PROJECT & TASK section is also updated 
+///////////////////////////////////////
+
+LTR: open the  "_custom-style.scss"  root(assets/scss/custom/custom-style.scss)
+RTL: open the  "_custom-style.scss"  root(assets/rtl-scss/custom/custom-style.scss)
+
+
+goto line number 3458 and update the padding  (padding: 7px 12px !important;) as shown below
+
+
+SCSS:
+
+
+.table {
+  th, td {
+	padding: 7px 12px !important;
+	vertical-align: baseline;
+  }
+}
+
+Add this bottom of the page in  "_custom-style.scss"
+
+.projects-stat .table-bordered th, .projects-stat .table-bordered td {
+    border: 1px solid #dedcfb !important;
+}
+
+
+LTR: open the  "_custom-style.scss"  root(assets/css/style.css)
+RTL: open the  "_custom-style.scss"  root(assets/rtl-scss/custom/custom-style.scss)
+
+open style.css gotoline number 11993 update padding (padding: 7px 12px !important;)   as shown below 
+
+
+.projects-stat .table th, .projects-stat .table td {
+  padding: 7px 12px !important;
+  vertical-align: baseline; 
+ }
+ 
+ Add this bottom of the page in  "_custom-style.scss"
+ 
+ .projects-stat .table-bordered th, .projects-stat .table-bordered td {
+     border: 1px solid #dedcfb !important;
+}
+
+
+
+	
+	

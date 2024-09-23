@@ -1,0 +1,262 @@
+
+Version V.4 - Updates  05-11-2020  
+--------------------------------------------------------------------------------------------------------
+
+Updates :  
+
+1) Fixed IE-11 UI issues.
+2) Updated BOOTSTRAP js in RTL 
+3) Updated Custom.js for Full Screen
+4) Documentation Updated
+
+--------------------------------------------------------------------------------------------------------
+
+
+Azira
+
+Azira template has scss and gulp files if you want to modify this template you should update in scss files for example if you want to change primary color. Change the color in .scss file that is in scss folder .after that in command prompt just run the command
+that is mentioned in the documentation folder (before that make sure that gulp is installed in your system then only it will update in style.css otherwise it shows an error) 
+
+By using gulp commands the changes have done in scss file will automatically  updated in style.css
+
+there is no need to update in style.css
+
+if you are not using scss then you can directly update in style.css, not in scss
+
+
+
+
+////////////////////////////////////////////////////////////
+1) Fixed IE-11 UI issues.
+////////////////////////////////////////////////////////////
+
+======================================================================  
+/*****1.1 Fixed IE-11 UI issues in HTML pages.*****/
+======================================================================  
+
+##########
+step:1 :- 
+##########
+
+Update widget-notification.html page in all html pages in Both LTR AND RTL
+    
+     Add "h-100" at particular div shown  in image 1(Before) and 2(After)
+
+======================================================================  
+/*****1.2 Fixed IE-11 UI issues in css*****/
+======================================================================  
+
+-------------------------------------------------------------------------  
+Note: If you are not using scss folder Follow the step:1 , Step:2
+-------------------------------------------------------------------------  
+
+##########
+step:1 :- updated IE in style.css in css folder  rootpath---> (assets/css/style.css)
+##########
+please add below css in style.css for ie in css folder  rootpath---> (assets/css/style.css)
+ 
+ IE CSS:-
+		 
+		*::-ms-backdrop,
+		html.fullscreen-button {
+			width: 100%;
+		}
+
+		*::-ms-backdrop,
+		html.fullscreen-button .main-content {
+			overflow: scroll;
+			overflow-x: hidden;
+			height: 100vh;
+		}
+
+
+		*::-ms-backdrop,
+		.main-msg-wrapper {
+			display: inline-table !important;
+		}
+
+ 
+##########
+step:2 :- updated IE in style.css in rtl-css folder  rootpath---> (assets/rtl-css/style.css)
+##########
+please add below css in style.css for ie in rtl-css folder  rootpath---> (assets/rtl-css/style.css)
+
+ IE CSS:-
+	*::-ms-backdrop,
+	html.fullscreen-button {
+		width: 100%;
+	}
+
+	*::-ms-backdrop,
+	html.fullscreen-button .main-content {
+		overflow: scroll;
+		overflow-x: hidden;
+		height: 100vh;
+	}
+
+	*::-ms-backdrop,
+	.main-msg-wrapper {
+		display: inline-table !important;
+	}
+
+
+------------------------------------------------------------------------- 
+Note: If you are using scss folder Follow the step:3 , Step:4 ,step:5
+------------------------------------------------------------------------- 
+
+##########
+step:3 :- updated IE in _custom-styles.css in scss folder  rootpath---> (assets/scss/custom/_custom-styles.css)
+##########
+please add below css in _custom-styles.css for ie in scss folder   rootpath---> (assets/scss/custom/_custom-styles.css)
+
+ IE CSS:-
+ 
+	*::-ms-backdrop,
+	html.fullscreen-button {
+		width: 100%;
+	}
+
+	*::-ms-backdrop,
+	html.fullscreen-button .main-content {
+		overflow: scroll;
+		overflow-x: hidden;
+		height: 100vh;
+	}
+
+	*::-ms-backdrop,
+	.main-msg-wrapper {
+		display: inline-table !important;
+	}
+
+ 
+##########
+step:4 :- updated IE in _custom-styles.css in scss-rtl folder  rootpath--->  (assets/scss-rtl/custom/_custom-styles.css)
+##########
+please add below css in _custom-styles.css for ie in scss-rtl folder   rootpath--->  (assets/scss-rtl/custom/_custom-styles.css)
+
+ IE CSS:-
+ 
+	*::-ms-backdrop,
+	html.fullscreen-button {
+		width: 100%;
+	}
+
+	*::-ms-backdrop,
+	html.fullscreen-button .main-content {
+		overflow: scroll;
+		overflow-x: hidden;
+		height: 100vh;
+	}
+
+	*::-ms-backdrop,
+	.main-msg-wrapper {
+		display: inline-table !important;
+	}
+
+
+##########
+step:5 :- 
+###########
+
+After Step 3 and step 4
+
+Open cmd prompt and run below commands:
+
+gulp watch
+
+gulp watch-rtl
+
+Please check the documentation to know about gulp commands in detail
+
+
+////////////////////////////////////////////////////////////
+2)  Updated BOOTSTRAP js in RTL 
+////////////////////////////////////////////////////////////
+
+##########
+step:1 :- 
+###########
+
+replace the bootstrap folder in plugins  rootpath---> ( assets\plugins\bootstrap)
+
+##########
+step:2 :- 
+###########
+
+open all the RTL HTML pages and replace the link as shown below 
+
+Previous :-
+		<!--- Bootstrap Bundle js --->
+		<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		
+		
+Updated :-
+		<!--- Bootstrap Bundle js --->
+		<script src="../../assets/plugins/bootstrap/js/popper.min.js"></script>
+		<script src="../../assets/plugins/bootstrap/js/bootstrap-rtl.js"></script>
+		
+////////////////////////////////////////////////////////////
+3) Updated Custom.js for Full Screen
+////////////////////////////////////////////////////////////
+
+##########
+step:1 :- 
+###########
+
+open cutom js in js folder and replace the js as shown below  rootpath---> (assets\js\custom)
+
+Previous :-
+	// ______________Full screen
+	$(document).on("click", ".fullscreen-button", function toggleFullScreen() {
+		if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+			if (document.documentElement.requestFullScreen) {
+				document.documentElement.requestFullScreen();
+			} else if (document.documentElement.mozRequestFullScreen) {
+				document.documentElement.mozRequestFullScreen();
+			} else if (document.documentElement.webkitRequestFullScreen) {
+				document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			} else if (document.documentElement.msRequestFullscreen) {
+				document.documentElement.msRequestFullscreen();
+			}
+		} else {
+			if (document.cancelFullScreen) {
+				document.cancelFullScreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitCancelFullScreen) {
+				document.webkitCancelFullScreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
+		}
+	})
+		
+		
+Updated :-
+		
+	// ______________Full screen
+	$(document).on("click", ".fullscreen-button", function toggleFullScreen() {
+		$('html').addClass('fullscreen-button');  /******************ADD THE LINE ****************************/
+		if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+			if (document.documentElement.requestFullScreen) {
+				document.documentElement.requestFullScreen();
+			} else if (document.documentElement.mozRequestFullScreen) {
+				document.documentElement.mozRequestFullScreen();
+			} else if (document.documentElement.webkitRequestFullScreen) {
+				document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			} else if (document.documentElement.msRequestFullscreen) {
+				document.documentElement.msRequestFullscreen();
+			}
+		} else {
+			$('html').removeClass('fullscreen-button'); /******************ADD THE LINE ****************************/
+			if (document.cancelFullScreen) {
+				document.cancelFullScreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitCancelFullScreen) {
+				document.webkitCancelFullScreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
+		}
+	})

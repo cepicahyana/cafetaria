@@ -1,0 +1,337 @@
+<?php
+$sn=$this->input->get("id");
+$this->db->where("kode",$sn);
+$db=$this->db->get("device_stations")->row();
+  $kode=isset($db->kode)?($db->kode):null;
+$sn=isset($db->sender_number)?($db->sender_number):null;
+// $sn=$this->m_reff->decrypt($sn);
+if($sn){
+    $this->session->set_userdata("sn",$sn);
+    $this->session->set_userdata("level","resto");
+}elseif(!$this->session->userdata("sn")){
+      echo "<i>Data not found atau anda belum memperpanjang layanan</i>";
+    return false;
+}
+$sn = $this->session->userdata("sn");
+$this->db->where("sender_number",$sn);
+$db = $this->db->get("device_stations")->row();
+if(!$db){
+    echo "<i>Data not found atau anda belum memperpanjang layanan</i>";
+    return false;
+}
+$notif_order         = isset($db->notif_order)?($db->notif_order):null;
+$order       = isset($db->order)?($db->order):null;
+$jam         = isset($db->jam_op)?($db->jam_op):null;
+$toko        = isset($db->sender_name)?($db->sender_name):null;
+$story       = isset($db->story)?($db->story):null;
+$fotmenu     = isset($db->foto_menu)?($db->foto_menu):null;
+$fotmenu2     = isset($db->foto_menu2)?($db->foto_menu2):null;
+$best_seller = isset($db->best_seller)?($db->best_seller):null;
+$link_name = isset($db->link_name)?($db->link_name):null;
+$info = isset($db->info)?($db->info):null;
+$menu_promo  = isset($db->menu_promo)?($db->menu_promo ):null;
+$map  = isset($db->map)?($db->map ):null;
+$sambutan  = isset($db->sambutan)?($db->sambutan ):null;
+$ig       = isset($db->ig)?($db->ig):null;
+$info_tutup       = isset($db->info_tutup)?($db->info_tutup):null;
+$contoh_order = isset($db->contoh_order)?($db->contoh_order):null;
+$foto1       = isset($db->foto1)?($db->foto1):null;
+$foto2       = isset($db->foto2)?($db->foto2):null;
+$foto3       = isset($db->foto3)?($db->foto3):null;
+$foto4       = isset($db->foto4)?($db->foto4):null;
+
+$jam = json_decode($jam,true);
+$notif_order = json_decode($notif_order,true);
+$notif1 = isset($notif_order[1])?($notif_order[1]):null;
+$notif2 = isset($notif_order[2])?($notif_order[2]):null;
+$notif3 = isset($notif_order[3])?($notif_order[3]):null;
+
+
+
+$hari1_open =  isset($jam[1]["open"])?($jam[1]["open"]):null;
+$hari1_close = isset($jam[1]["close"])?($jam[1]["close"]):null; 
+$hari2_open =  isset($jam[2]["open"])?($jam[2]["open"]):null;
+$hari2_close = isset($jam[2]["close"])?($jam[2]["close"]):null; 
+$hari3_open =  isset($jam[3]["open"])?($jam[3]["open"]):null;
+$hari3_close = isset($jam[3]["close"])?($jam[3]["close"]):null; 
+$hari4_open =  isset($jam[4]["open"])?($jam[4]["open"]):null;
+$hari4_close = isset($jam[4]["close"])?($jam[4]["close"]):null; 
+$hari5_open =  isset($jam[5]["open"])?($jam[5]["open"]):null;
+$hari5_close = isset($jam[5]["close"])?($jam[5]["close"]):null; 
+$hari6_open =  isset($jam[6]["open"])?($jam[6]["open"]):null;
+$hari6_close = isset($jam[6]["close"])?($jam[6]["close"]):null; 
+$hari7_open =  isset($jam[7]["open"])?($jam[7]["open"]):null;
+$hari7_close = isset($jam[7]["close"])?($jam[7]["close"]):null; 
+$function_fot1=$function_fot2=$function_fot3=$function_fot4=$function_fot5=$foto_menu=$foto_menu2=$function_menu1=$function_menu2="";
+
+
+if($fotmenu2){
+    $foto_menu2 = '<span style="float:right"><span style="cursor:pointer;display:hidden;color:red" onclick="hapus_fotmenu(`'.$fotmenu2.'`,`2`)">&times; Hapus </span> 
+    <a target="_blank" href="'.base_url()."file_upload/".$sn."/".$fotmenu2.'"><i class="fa fa-image"></i> Lihat </a></span>';
+}
+
+if($fotmenu){
+    $foto_menu = '<span style="float:right"><span style="cursor:pointer;display:hidden;color:red" onclick="hapus_fotmenu(`'.$fotmenu.'`,`1`)">&times; Hapus </span> 
+    <a target="_blank" href="'.base_url()."file_upload/".$sn."/".$fotmenu.'"><i class="fa fa-image"></i> Lihat </a></span>';
+}
+
+if($foto1){
+    $function_fot1 = '<span style="float:right"><span style="display:hidden;cursor:pointer;color:red" onclick="hapus_ghalery(`1`,`'.$foto1.'`)">&times; Hapus </span> | 
+    <a target="_blank" href="'.base_url()."file_upload/".$sn."/".$foto1.'"><i class="fa fa-image"></i> Lihat </a></span>';
+}
+if($foto2){
+    $function_fot2 = '<span style="float:right"><span style="display:hidden;cursor:pointer;color:red" onclick="hapus_ghalery(`2`,`'.$foto2.'`)">&times; Hapus </span>
+    | <a target="_blank" href="'.base_url()."file_upload/".$sn."/".$foto2.'"><i class="fa fa-image"></i> Lihat </a></span>';
+}
+if($foto3){
+    $function_fot3 = '<span style="float:right"><span style="display:hidden;cursor:pointer;color:red" onclick="hapus_ghalery(`3`,`'.$foto3.'`)">&times; Hapus </span>
+     | <a target="_blank" href="'.base_url()."file_upload/".$sn."/".$foto3.'"><i class="fa fa-image"></i> Lihat </a></span>';
+}
+if($foto4){
+    $function_fot4 = '<span style="float:right"><span style="display:hidden;cursor:pointer;color:red" onclick="hapus_ghalery(`4`,`'.$foto4.'`)">&times; Hapus </span>
+     | <a target="_blank" href="'.base_url()."file_upload/".$sn."/".$foto4.'"><i class="fa fa-image"></i> Lihat </a></span>';
+}
+
+?>
+ <br/>
+					<div class="main-content-body ">
+<center>
+	<div class="col-md-12s row">
+ 
+<div class="col-xl-12 col-md-6 col-lg-6 col-sm-6">
+	 <div class="card" id="loading"> 
+	  <div class="card-body text-left"> 
+	   <div class="form-group "> <div class="row"> 
+		<div class="col-md-12">
+
+
+
+
+<!------------->
+<div class="row row-sm mg-b-20">
+   <div class="col-lg-12" id="area_update">
+       <form  id='update' action="javascript:submitForm('update')" method="post" url="<?php echo base_url()?>master/update">  
+      <p class="mg-b-1">Nama Toko</p>
+       <input type="text" name="sender_name" class="form-control mg-b-10"   value="<?=$toko;?>">
+        <p class="mg-b-1">Link Toko <br>(untuk link qrcode menu jangan gunakan symbol)</p>
+       <input type="text" name="link_name" class="form-control mg-b-10"   value="<?=$link_name;?>">
+       <i class='text-info font-6'><?=base_url()?>resto?id=<?=$link_name;?></i>
+       <br><br>
+       	<div class="row row-xs align-items-center mg-b-20">
+					<div class="col-md-12">
+					 Gunakan fiture Order 
+					</div>
+					<div class="col-md-1 mg-t-5 mg-md-t-0">
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="f[order]" id="exampleRadios3" value="1" <?php if($order=='1'){ ?> checked=checked <?php } ?>>
+						  <label class="form-check-label" for="exampleRadios3">
+						   Ya
+						  </label>
+						</div>
+					</div>
+					<div class="col-md-2 mg-t-5 mg-md-t-0">
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="f[order]" id="exampleRadios4" value="0" <?php if($order=='0'){ ?> checked=checked <?php } ?>>
+						  <label class="form-check-label" for="exampleRadios4">
+						    Tidak 
+						  </label>
+						</div>
+					</div>
+				</div>
+       
+        <p class="mg-b-1">Nama Owner</p>
+         <input type="text" name="f[owner]" class="form-control mg-b-10"   value="<?=$db->owner;?>">
+         
+          <p class="mg-b-1">No.Whatsapp Owner</p>
+         <input type="text" name="f[hp_owner]" class="form-control mg-b-10"   value="<?=$db->hp_owner;?>">
+       
+       
+        <p class="mg-b-1">Ceritakan sedikit tentang toko anda</p>
+       <textarea type="text" name="story" class="form-control mg-b-10" style="min-height:150px"><?=$story;?></textarea>
+       
+       <p class="mg-b-1">Upload menu 1 (Maksimal.2MB) <?=$foto_menu;?> <?=$function_menu1;?></p>
+       <input type="file" name="menu" class="form-control mg-b-10">
+       
+       <p class="mg-b-1">Upload menu 2 (Maksimal.2MB) <?=$foto_menu2;?> <?=$function_menu2;?></p>
+       <input type="file" name="menu2" class="form-control mg-b-10">
+       
+         <p class="mg-b-1">Upload foto toko (Maksimal.2MB) <?=$function_fot1;?></p>
+       <input type="file" name="foto1" class="form-control mg-b-10">
+       
+        
+        <p class="mg-b-1">Info Menarik</p>
+       <textarea type="text" name="info" class="form-control mg-b-10" style="min-height:150px"><?=$info;?></textarea>
+       
+        <p class="mg-b-1">Pesan sambutan</p>
+       <textarea type="text" name="f[sambutan]" class="form-control mg-b-10" style="min-height:150px"><?=$sambutan;?></textarea>
+       <!-- <p class="mg-b-1">Contoh Order</p>-->
+       <!--<textarea type="text" name="f[contoh_order]" class="form-control mg-b-10" style="min-height:150px"><?=$contoh_order;?></textarea>-->
+       
+       <!-- <p class="mg-b-1">Pesan jika toko tutup</p>-->
+       <!--<textarea type="text" name="f[info_tutup]" class="form-control mg-b-10" style="min-height:150px"><?=$info_tutup;?></textarea>-->
+       
+      
+      <!--<p class="mg-b-1">Menu Promo <i> (Kosongkan jika tidak ada promo)</i></p>-->
+      <!-- <textarea type="text" placeholder="Kosongkan jika tanpa promo" name="menu_promo" class="form-control mg-b-10" style="min-height:150px"><?=$menu_promo;?></textarea>-->
+      <!-- <br/>-->
+      <b>SERTAKAN SPOT FOTO TERBAIK TOKO ANDA</b>
+       <!--<p class="mg-b-1">Ghalery 1 (Maksimal.2MB) <?=$function_fot1?></p>-->
+       <!--<input type="file" name="foto1" class="form-control mg-b-10">-->
+       <p class="mg-b-1">Ghalery 1 (Maksimal.2MB) <?=$function_fot2?></p>
+       <input type="file" name="foto2" class="form-control mg-b-10">
+       <p class="mg-b-1">Ghalery 2 (Maksimal.2MB) <?=$function_fot3?></p>
+       <input type="file" name="foto3" class="form-control mg-b-10">
+       <p class="mg-b-1">Ghalery 3 (Maksimal.2MB) <?=$function_fot4?></p>
+       <input type="file" name="foto4" class="form-control mg-b-10">
+      <p class="mg-b-1">Instagram (optional)</p>
+       <input type="text" name="f[ig]" class="form-control mg-b-10"   value="<?=$ig;?>">
+       
+        <p class="mg-b-1">Link google maps!</p>
+       <textarea type="text" name="map" class="form-control mg-b-10" style="min-height:150px"><?=$map;?></textarea>
+       <hr>
+       
+       
+      <table width="100%" class="entry">
+          <thead>
+              <th>HARI</th><th>JAM BUKA</th><th>JAM TUTUP</th>
+          </thead>
+          <tr>
+              <td>SENIN</td><td><input value="<?=$hari1_open;?>" name="jam[1][open]" type="time" style="max-width:100px"></td><td><input name="jam[1][close]"  value="<?=$hari1_close;?>" type="time"  style="max-width:100px"></td>
+          </tr>
+          <tr>
+              <td>SELASA</td><td><input value="<?=$hari2_open;?>" name="jam[2][open]" type="time" style="max-width:100px"></td><td><input name="jam[2][close]"  value="<?=$hari2_close;?>"type="time" style="max-width:100px"></td>
+          </tr>
+          <tr>
+              <td>RABU</td><td><input value="<?=$hari3_open;?>" name="jam[3][open]" type="time" style="max-width:100px"></td><td><input name="jam[3][close]" value="<?=$hari3_close;?>" type="time" style="max-width:100px"></td>
+          </tr>
+          <tr>
+              <td>KAMIS</td><td><input value="<?=$hari4_open;?>" name="jam[4][open]" type="time" style="max-width:100px"></td><td><input name="jam[4][close]" value="<?=$hari4_close;?>" type="time" style="max-width:100px"></td>
+          </tr>
+          <tr>
+              <td>JUMAT</td><td><input value="<?=$hari5_open;?>" name="jam[5][open]" type="time" style="max-width:100px"></td><td><input name="jam[5][close]" value="<?=$hari5_close;?>" type="time" style="max-width:100px"></td>
+          </tr>
+          <tr>
+              <td>SABTU</td><td><input value="<?=$hari6_open;?>" name="jam[6][open]" type="time" style="max-width:100px"></td><td><input name="jam[6][close]" value="<?=$hari6_close;?>" type="time" style="max-width:100px"></td>
+          </tr>
+          <tr>
+              <td>MINGGU</td><td><input value="<?=$hari7_open;?>" name="jam[7][open]" type="time" style="max-width:100px"></td><td><input name="jam[7][close]" value="<?=$hari7_close;?>" type="time" style="max-width:100px"></td>
+          </tr>
+      </table>
+      <div class="aler alert-info p-2">Jika libur maka kolom jam buka & jam tutup dikosongkan (Jangan diisi)</div>
+       
+       <br>
+             <p class="mg-b-1"><b>Teruskan notifikasi order ke nomor dibawah ini :</b></p>
+        <p class="mg-b-1">Nomor 1</p>
+       <input type="text" name="n[1]" value="<?=$notif1;?>" class="form-control mg-b-10">
+         <p class="mg-b-1">Nomor 2</p>
+       <input type="text" name="n[2]"  value="<?=$notif2;?>" class="form-control mg-b-10">
+         <p class="mg-b-1">Nomor 3</p>
+       <input type="text" name="n[3]"  value="<?=$notif3;?>" class="form-control mg-b-10">
+      <center>
+          
+          <br><br>
+         
+       <button class="btn btn-primary" onclick=submitForm("update")><i class="fa fa-save"></i> SIMPAN</button>
+       </center>
+       </form>
+   </div>
+    
+</div>
+<!------------->
+
+
+
+			
+			
+			
+		</div>
+     </div> 
+ 	</div>
+  </div> 
+ </div> 
+</div>
+
+ 
+ 
+	</div>
+</center> 
+</div>
+
+<script>
+    function reload_table(){
+       
+            window.location.href="";
+            
+    }
+    
+    
+    function hapus_fotmenu(file,id){
+        	swal({
+								  title: 'Hapus !',
+								  text: 'Menu '+id,
+								  type: 'warning',
+								  buttons:{
+									  cancel: {
+										  visible: true,
+										  text : 'cancel',
+										  className: 'btn btn-dark'
+									  },        			
+									  confirm: {
+										  text : 'Yes',
+										  className : 'btn btn-danger'
+									  }
+								  }
+							  }).then((willDelete) => {
+								  if (willDelete) {
+									var url   = "<?=base_url();?>master/delete_fotmenu";
+									var param = {id:id,file:file,ci_csrf_token:token};
+									
+											$.ajax({
+													type: "POST",dataType: "json",data: param, url: url,
+													success: function(val){ 
+														token=val['token'];
+														swal_notif("success!");
+														reload_table();
+													}
+											});	
+								
+								  }
+								  });
+    }
+    
+     function hapus_ghalery(id,file){
+							swal({
+								  title: 'Hapus !',
+								  text: 'Ghalery '+id,
+								  type: 'warning',
+								  buttons:{
+									  cancel: {
+										  visible: true,
+										  text : 'cancel',
+										  className: 'btn btn-dark'
+									  },        			
+									  confirm: {
+										  text : 'Yes',
+										  className : 'btn btn-danger'
+									  }
+								  }
+							  }).then((willDelete) => {
+								  if (willDelete) {
+									var url   = "<?=base_url();?>master/delete_ghalery";
+									var param = {id:id,file:file,ci_csrf_token:token};
+									
+											$.ajax({
+													type: "POST",dataType: "json",data: param, url: url,
+													success: function(val){ 
+														token=val['token'];
+														swal_notif("success!");
+														reload_table();
+													}
+											});	
+								
+								  }
+								  });
+	 }
+		 
+</script>
+			 

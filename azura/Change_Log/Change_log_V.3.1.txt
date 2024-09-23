@@ -1,0 +1,20 @@
+Version: update V.3.1  (9-5-2020)
+
+
+1) Updated custom js file 
+
+
+//////////////////////////////////////////
+######  1) Updated custom js file ###### 
+/////////////////////////////////////////
+
+Step:1  Open "custom.js"    rootpath --(assets/js/custom.js)
+			
+			
+skins section is missing in custom.js so please update custom.js file  
+		
+Step:2  Please replace Previous custom.js file with updated custom.js file   
+
+
+	
+	
